@@ -4,6 +4,7 @@ service NoteService{
     rpc List (Note) returns (NoteList){};
     rpc Insert (Note) returns (Note);
    rpc Get (Request) returns (Articles);
+   rpc GetWeb (Request) returns (Websites);
 }
 
 message Empty {}
@@ -24,32 +25,32 @@ message Articles{
 }
 
 message Article{
-    required int32 _id = 1;
+    required int64 _id = 1;
     repeated string tags =2;
     string status = 3;
-    bool mobile = 4;
-    repeated string images = 5;
-    string link = 6;
-    string title = 7;
-    string sapo = 8 ;
-    string publicDate = 9;
-    string thumbnail = 10;
-    message Category{
-        int64 id = 1;
-        string name = 2;
-    };
-    Category category = 11;
-    message Website{
-        int64 id = 1;
-        string name = 2;
-    };
-    Website website = 12;
-    required string text = 13;
-    required string sourceCode = 14;  
-    required int64 numberOfWords = 15;
-    repeated string sentences = 16;
-    string createdAt = 17; 
-    string updatedAt = 18;
+     bool mobile = 4;
+     repeated string images = 5;
+     string link = 6;
+     string title = 7;
+     string sapo = 8;
+//    string publicDate = 9;
+     string thumbnail = 9;
+     message Category{
+         int64 id = 1;
+         string name = 2;
+     };
+     Category category = 10;
+     message Website{
+         int64 id = 1;
+         string name = 2;
+     };
+     Website website = 11;
+     required string text = 12;
+     required string sourceCode = 13;  
+     required int64 numberOfWords = 14;
+     repeated string sentences = 15;
+   // string createdAt = 17; 
+   // string updatedAt = 18;
 }
 
 message User{
@@ -57,4 +58,17 @@ message User{
     string username = 2;
     string password = 3;
     
+}
+
+message Website{
+    int64 _id =1;
+    bool official = 2;
+    string name = 3;
+    string url = 4;
+    repeated string hostnames = 5;
+    string appId = 6;
+}
+
+message Websites{
+    repeated Website website = 1;
 }
