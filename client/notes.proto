@@ -33,24 +33,24 @@ message Article{
      string link = 6;
      string title = 7;
      string sapo = 8;
-//    string publicDate = 9;
-     string thumbnail = 9;
+    string publicDate = 9;
+     string thumbnail = 10;
      message Category{
          int64 id = 1;
          string name = 2;
      };
-     Category category = 10;
+     Category category = 11;
      message Website{
          int64 id = 1;
          string name = 2;
      };
-     Website website = 11;
-     required string text = 12;
-     required string sourceCode = 13;  
-     required int64 numberOfWords = 14;
-     repeated string sentences = 15;
-   // string createdAt = 17; 
-   // string updatedAt = 18;
+     Website website = 12;
+     required string text = 13;
+     required string sourceCode = 14;  
+     required int64 numberOfWords = 15;
+     repeated string sentences = 16;
+    string createdAt = 17; 
+    string updatedAt = 18;
 }
 
 message User{

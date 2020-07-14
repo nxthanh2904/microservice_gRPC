@@ -3,13 +3,12 @@ const uuidv1 = require('uuid/v1');
 const mongoose = require('mongoose');
 const Article = require('./model/article');
 const Website = require('./model/website');
+const express = require('express');
 const notesProto = grpc.load('./notes.proto');
-const notes = [
-    { id: '1', title: 'Note 1', content: 'Content 1' },
-    { id: '2', title: 'Note 2', content: 'Content 2' }
-];
+const app = express();
+const PORT = 8000;
 
-const db = 'mongodb://localhost/news-vietnamnet';
+const db = 'mongodb://mongo/news-vietnamnet';
 mongoose.connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -44,11 +43,12 @@ server.addService(notesProto.NoteService.service, {
     }
 
 })
-server.bind('127.0.0.1:50051',
+server.bind('0.0.0.0:50051',
     grpc.ServerCredentials.createInsecure());
-console.log('Server is running at http://127.0.0.1:50051');
+console.log('Server is running at http://0.0.0.0:50051');
 server.start();
 
+app.listen(PORT, () =>console.log(`Server is running on ${PORT}`))
 async function getByTag(data) {
     // console.log(data);
     // const { tag } = data;

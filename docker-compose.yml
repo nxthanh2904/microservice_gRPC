@@ -1,0 +1,31 @@
+version: "3"
+services: 
+    grpc-server:
+        container_name: grpc-server
+        build: ./server
+        ports: 
+            - "8000:8000"
+        restart: always
+        links:
+            - mongoRPC
+        depends_on: 
+            - mongoRPC
+        
+    mongoRPC:
+        container_name: mongoRPC
+        restart: always
+        image: mongo
+        volumes: 
+            - ./mongoRPC:/data/db
+        ports: 
+            - "27018:27017"
+    grpc-client:
+        container_name: grpc-client
+        build: ./client
+        restart: always
+        ports: 
+            - "4000:4000"
+        depends_on: 
+            - grpc-server
+volumes:
+    mongoRPC:
