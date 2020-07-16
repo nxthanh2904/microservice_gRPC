@@ -8,7 +8,7 @@ const notesProto = grpc.load('./notes.proto');
 const app = express();
 const PORT = 8000;
 
-const db = 'mongodb://mongo/news-vietnamnet';
+const db = 'mongodb://mongoRPC/news-vietnamnet';
 mongoose.connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
